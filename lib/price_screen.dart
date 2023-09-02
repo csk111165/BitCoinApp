@@ -12,7 +12,8 @@ class PriceScreen extends StatefulWidget {
 class _PriceScreenState extends State<PriceScreen> {
   String? selectedCurrency = 'USD';
 
-  List<DropdownMenuItem<String>> getDropdownItems() {
+  // for andriod
+  DropdownButton<String> androidDropDown() {
 
     List<DropdownMenuItem<String>> dropdownItems = [];
 
@@ -25,12 +26,21 @@ class _PriceScreenState extends State<PriceScreen> {
 
       dropdownItems.add(newItem);
     }
-    return dropdownItems;
+    return DropdownButton<String>(
+      value:selectedCurrency, // this is to show the first item on the dropdown , by default it will be empty
+      items: dropdownItems,
+      onChanged: (value) {
+        setState(() {
+          selectedCurrency = value;
+        });
+      },
+    );
   }
 
-  // items for the CupertinoPicker
-  List<Widget> getPickerItems() {
-    
+  // for ios
+
+  CupertinoPicker iOSPicker() {
+
     List<Widget> pickerItems = [];
 
     for( String currency in currenciesList){
@@ -39,8 +49,14 @@ class _PriceScreenState extends State<PriceScreen> {
       pickerItems.add(newItem);
     }
 
-    return pickerItems;
+    return CupertinoPicker(
+        itemExtent: 32.0, 
+        onSelectedItemChanged: (selectedIndex){
+      }, 
+      children: pickerItems,
+      );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,16 +94,8 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: const EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: CupertinoPicker(
-              itemExtent: 32.0, 
-              magnification: 1.0,
-              onSelectedItemChanged: (selectedIndex){
-              print(selectedIndex);
-            }, 
-            children: getPickerItems(),
-
+            child: androidDropDown(),
             ),
-          ),
         ],
       ),
     );
@@ -95,12 +103,4 @@ class _PriceScreenState extends State<PriceScreen> {
 }
 
 
-//  DropdownButton<String>(
-//               value:selectedCurrency, // this is to show the first item on the dropdown , by default it will be empty
-//               items: getDropdownItems(),
-//               onChanged: (value) {
-//                 setState(() {
-//                   selectedCurrency = value;
-//                 });
-//               },
-//             ),
+
