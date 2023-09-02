@@ -15,9 +15,7 @@ class _PriceScreenState extends State<PriceScreen> {
 
     List<DropdownMenuItem<String>> dropdownItems = [];
 
-    for (int i = 0; i < currenciesList.length; i++) {
-
-      String currency = currenciesList[i];
+    for (String currency in currenciesList) {
 
       var newItem = DropdownMenuItem(
         value: currency,
@@ -66,8 +64,7 @@ class _PriceScreenState extends State<PriceScreen> {
             padding: const EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
             child: DropdownButton<String>(
-              value:
-                  selectedCurrency, // this is to show the first item on the dropdown , by default it will be empty
+              value:selectedCurrency, // this is to show the first item on the dropdown , by default it will be empty
               items: getDropdownItems(),
               onChanged: (value) {
                 setState(() {
