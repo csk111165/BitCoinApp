@@ -59,14 +59,14 @@ class _PriceScreenState extends State<PriceScreen> {
   void printData() async {
 
      CoinData coinData = CoinData();
-    var x = await coinData.getCoinData();
-    print(x);
+      var x = await coinData.getCoinData();
+      print(x);
   }
 
 
   @override
   Widget build(BuildContext context) {
-   printData();
+    printData();
     return Scaffold(
       appBar: AppBar(
         title: const Text('🤑 Coin Ticker'),
