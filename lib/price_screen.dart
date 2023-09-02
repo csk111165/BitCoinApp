@@ -28,6 +28,20 @@ class _PriceScreenState extends State<PriceScreen> {
     return dropdownItems;
   }
 
+  // items for the CupertinoPicker
+  List<Widget> getPickerItems() {
+    
+    List<Widget> pickerItems = [];
+
+    for( String currency in currenciesList){
+
+      var newItem = Text(currency);
+      pickerItems.add(newItem);
+    }
+
+    return pickerItems;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,24 +83,8 @@ class _PriceScreenState extends State<PriceScreen> {
               onSelectedItemChanged: (selectedIndex){
               print(selectedIndex);
             }, 
-            children: [
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                 Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-                Text('USD'),
-            ],
+            children: getPickerItems(),
+            
             ),
           ),
         ],
