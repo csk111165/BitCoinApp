@@ -6,6 +6,8 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
+  String? selectedCurrency = 'USD';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +45,8 @@ class _PriceScreenState extends State<PriceScreen> {
             padding: EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
             child: DropdownButton<String>(
+              value:
+                  selectedCurrency, // this is to show the first item on the dropdown , by default it will be empty
               items: [
                 DropdownMenuItem(
                   child: Text('USD'),
@@ -58,7 +62,9 @@ class _PriceScreenState extends State<PriceScreen> {
                 ),
               ],
               onChanged: (value) {
-                print(value);
+                setState(() {
+                  selectedCurrency = value;
+                });
               },
             ),
           ),
