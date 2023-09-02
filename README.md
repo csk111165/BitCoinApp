@@ -18,3 +18,5 @@ samples, guidance on mobile development, and a full API reference.
 * If we want to import only specific class from module we use show/hide with import
 * show will show that specific module
 * hide will not import that specific module
+* http package need to be installed via : `dart pub add http` it will automatically update the pubspec.yaml file
+* for generating the api key we can use some temp mail, instead of giving them gmail id, such as temp-mail.org
