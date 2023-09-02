@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import "package:bitcoin_app/coin_data.dart";
 
@@ -63,14 +64,29 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: const EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: DropdownButton<String>(
-              value:selectedCurrency, // this is to show the first item on the dropdown , by default it will be empty
-              items: getDropdownItems(),
-              onChanged: (value) {
-                setState(() {
-                  selectedCurrency = value;
-                });
-              },
+            child: CupertinoPicker(
+              itemExtent: 32.0, 
+              onSelectedItemChanged: (selectedIndex){
+              print(selectedIndex);
+            }, 
+            children: [
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                 Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+                Text('USD'),
+            ],
             ),
           ),
         ],
@@ -78,3 +94,14 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 }
+
+
+//  DropdownButton<String>(
+//               value:selectedCurrency, // this is to show the first item on the dropdown , by default it will be empty
+//               items: getDropdownItems(),
+//               onChanged: (value) {
+//                 setState(() {
+//                   selectedCurrency = value;
+//                 });
+//               },
+//             ),
