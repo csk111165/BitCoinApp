@@ -56,10 +56,17 @@ class _PriceScreenState extends State<PriceScreen> {
       children: pickerItems,
       );
   }
+  void printData() async {
+
+     CoinData coinData = CoinData();
+    var x = await coinData.getCoinData();
+    print(x);
+  }
 
 
   @override
   Widget build(BuildContext context) {
+   printData();
     return Scaffold(
       appBar: AppBar(
         title: const Text('🤑 Coin Ticker'),
@@ -94,7 +101,7 @@ class _PriceScreenState extends State<PriceScreen> {
             alignment: Alignment.center,
             padding: const EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
-            child: androidDropDown(),
+            child:  androidDropDown(), //Platform.isAndroid ? androidDropDown() :iOSPicker(), // this works in android simulator not in web
             ),
         ],
       ),
