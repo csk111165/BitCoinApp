@@ -56,17 +56,33 @@ class _PriceScreenState extends State<PriceScreen> {
       children: pickerItems,
       );
   }
-  void printData() async {
+  
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+  
+  String? bitcoinValue  = '?';
 
-     CoinData coinData = CoinData();
-      var x = await coinData.getCoinData();
-      print(x);
+  void getData() async {
+
+    try {
+      CoinData coinData = CoinData();
+      double data = await coinData.getCoinData();
+      setState(() {
+        bitcoinValue = data.toStringAsFixed(0);
+        print("what is bitconval : $bitcoinValue");
+      });
+    } catch(e) {
+      print(e);
+    }
+    
   }
 
 
   @override
   Widget build(BuildContext context) {
-    printData();
     return Scaffold(
       appBar: AppBar(
         title: const Text('🤑 Coin Ticker'),
@@ -83,10 +99,10 @@ class _PriceScreenState extends State<PriceScreen> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
-              child: const Padding(
+              child:  Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = ? USD',
+                  '1 BTC = $bitcoinValue USD',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
